@@ -1,5 +1,7 @@
 # Terraform - Rancher High Availability Installation
 
+### Work in progress! Please see open issues
+
 ## Purpose
 This terraform project will allow you to deploy a Highly Available Rancher installation to your Google Cloud.
 
