@@ -31,7 +31,7 @@ resource "google_compute_instance_template" "rancher_ha_compute_template" {
     create_before_destroy = true
   }
 
-  metadata_startup_script = "sudo apt-get update && sudo apt-get --assume-yes install apt-transport-https ca-certificates curl gnupg-agent software-properties-common && curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add - && sudo apt-key fingerprint 0EBFCD88 && sudo add-apt-repository \"deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable\" && sudo apt-get --assume-yes update && sudo apt-get --assume-yes install docker-ce=5:18.09.2~3-0~ubuntu-xenial docker-ce-cli=5:18.09.2~3-0~ubuntu-xenial containerd.io"
+  metadata_startup_script = "sudo apt-get update && sudo apt-get --assume-yes install apt-transport-https ca-certificates curl gnupg-agent software-properties-common && curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add - && sudo apt-key fingerprint 0EBFCD88 && sudo add-apt-repository \"deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable\" && sudo apt-get --assume-yes update && sudo apt-get --assume-yes install docker-ce=5:18.09.2~3-0~ubuntu-xenial docker-ce-cli=5:18.09.2~3-0~ubuntu-xenial containerd.io && sudo usermod -aG docker anthonyhumphreys && sudo usermod -aG docker ubuntu"
 }
  
 resource "google_compute_instance_group_manager" "rancher_ha_node_group_manager" {

@@ -3,16 +3,18 @@ resource "google_compute_firewall" "rancher_ha_firewall" {
   network = "${google_compute_network.rancher_ha_network.name}"
 
   allow {
+    protocol = "icmp"
+  }
+
+  allow {
     protocol = "tcp"
-    ports    = ["80", "443", "2376", "2379", "2380", "9099", "10250", "6443", "10254", "30000-32767"]
+    ports    = ["22", "80", "443", "2376", "2379", "2380", "9099", "10250", "6443", "10254", "30000-32767"]
   }
 
   allow {
     protocol = "udp"
     ports    = ["4789", "8472", "30000-32767"]
   }
-
-  source_tags = ["rancher-ha-node"]
 }
 
 resource "google_compute_network" "rancher_ha_network" {
